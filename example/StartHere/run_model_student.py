@@ -263,8 +263,8 @@ def build_chemistry(disc, chemistry_params, d2g_target, N_cell):
             # Rescale the dust fraction so the *total* dust-to-gas ratio
             # matches disc_params['d2g'] exactly, rather than whatever the
             # ice chemistry alone would produce.
-            M_dust = np.trapz(disc.Sigma_D.sum(0), np.pi * disc.grid.Rc ** 2)
-            M_gas = np.trapz(disc.Sigma_G, np.pi * disc.grid.Rc ** 2)
+            M_dust = np.trapezoid(disc.Sigma_D.sum(0), np.pi * disc.grid.Rc ** 2)
+            M_gas = np.trapezoid(disc.Sigma_G, np.pi * disc.grid.Rc ** 2)
             mod_frac = d2g_target / (M_dust / M_gas)
             disc.dust_frac[:] = disc.dust_frac * mod_frac
 
